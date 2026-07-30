@@ -16,8 +16,8 @@ def create_obj():
 
 def clean_user(objects:List[Any]):
     api_manager = ApiManager(objects)
-    for u in objects:
-        if isinstance(u, CreateUserResponse):
-            api_manager.admin_steps.delete_user(u.id)
+    for obj in objects:
+        if isinstance(obj, CreateUserResponse):
+            api_manager.admin_steps.delete_user(obj.id)
         else:
-            logging.warning(f"Error in delete user_id {u.id}")
+            logging.warning(f"Error in delete user_id {obj.id}")

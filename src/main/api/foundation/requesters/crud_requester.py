@@ -2,7 +2,7 @@ from requests import Response
 import requests
 
 from src.main.api.configs.config import Config
-from src.main.api.foundation.http_requester import HttpRequester
+from src.main.api.foundation.requesters.http_requester import HttpRequester
 from src.main.api.models.base_model import BaseModel
 from typing import Optional
 

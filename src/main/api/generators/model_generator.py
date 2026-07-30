@@ -1,6 +1,6 @@
 import uuid
 import rstr
-from random import random, randint, choice, uniform
+import random
 from typing import Any, get_type_hints, Annotated, get_origin, get_args
 
 from src.main.api.generators.creation_rule import CreationRule
@@ -8,11 +8,16 @@ from src.main.api.generators.creation_rule import CreationRule
 
 class RandomModelGenerator:
     @staticmethod
-    def generate (cls: type) -> Any:
+    def generate (cls: type, **overrides) -> Any:
         type_hints = get_type_hints(cls, include_extras=True)
         init_data = {}
 
         for field_name, annotated_type in type_hints.items():
+
+            if field_name in overrides:
+                init_data[field_name] = overrides[field_name]
+                continue
+
             rule = None
             actual_type = annotated_type
             if get_origin(annotated_type) is Annotated:

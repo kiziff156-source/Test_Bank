@@ -7,14 +7,14 @@ from src.main.api.generators.model_generator import RandomModelGenerator
 @pytest.mark.api
 class TestCreateUser:
     @pytest.mark.parametrize(
-        "create_user_request",
+        "generated_request",
         [RandomModelGenerator.generate(CreateUserRequest)]
     )
-    def test_create_user_valid(self, api_manager, create_user_request):
-        response = api_manager.admin_steps.create_user(create_user_request)
+    def test_create_user_valid(self, api_manager, generated_request):
+        response = api_manager.admin_steps.create_user(generated_request)
 
-        assert create_user_request.username == response.username
-        assert create_user_request.role == response.role
+        assert generated_request.username == response.username
+        assert generated_request.role == response.role
 
     @pytest.mark.parametrize(
         "username, password",
