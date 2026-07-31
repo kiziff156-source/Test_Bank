@@ -1,7 +1,7 @@
 
 from src.main.api.foundation.endpoint import Endpoint
 from src.main.api.foundation.requesters.validate_crud_requester import ValidateCrudRequester
-from src.main.api.models import create_user_request
+from src.main.api.models import create_user_request, transfer_amount_request
 from src.main.api.models.create_user_request import CreateUserRequest
 from src.main.api.specs.request_specs import RequestSpecs
 from src.main.api.specs.response_specs import ResponseSpecs
@@ -24,6 +24,14 @@ class UserSteps(BaseSteps):
             Endpoint.DEPOSIT_ACCOUNT,
             ResponseSpecs.request_ok()
         ).post(deposit_account_request)
+        return response
+
+    def transfer_amount (self,create_user_request, transfer_amount_request):
+        response = ValidateCrudRequester(
+            RequestSpecs.auth_headers(username=create_user_request.username, password=create_user_request.password),
+            Endpoint.TRANSFER_AMOUNT,
+            ResponseSpecs.request_ok()
+        ).post(transfer_amount_request)
         return response
 
 
