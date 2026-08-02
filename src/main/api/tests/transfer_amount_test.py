@@ -20,3 +20,8 @@ class TestTransferAmount:
         assert transfer_amount_response.fromAccountIdBalance == first_account.balance - transfer_amount_request.amount
         assert transfer_amount_response.fromAccountId == first_account.id
         assert transfer_amount_response.toAccountId == second_account.id
+
+    def test_transfer_in(self):
+        pass
+    def test_transfer_out(self):
+        pass

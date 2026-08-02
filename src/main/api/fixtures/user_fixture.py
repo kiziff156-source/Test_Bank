@@ -9,6 +9,7 @@ from src.main.api.models.deposit_account_request import DepositAccountRequest
 @pytest.fixture
 def create_user_request(api_manager):
     user_request = RandomModelGenerator.generate(CreateUserRequest)
+    user_request.role = "ROLE_USER"
     api_manager.admin_steps.create_user(user_request)
     return user_request
 
