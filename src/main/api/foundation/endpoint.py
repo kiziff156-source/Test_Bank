@@ -11,6 +11,8 @@ from src.main.api.models.deposit_account_request import DepositAccountRequest
 from src.main.api.models.deposit_account_response import DepositAccountResponse
 from src.main.api.models.login_user_request import LoginUserRequest
 from src.main.api.models.login_user_response import User, LoginUserResponse
+from src.main.api.models.request_credit_request import RequestCreditRequest
+from src.main.api.models.request_credit_response import RequestCreditResponse
 from src.main.api.models.transfer_amount_request import TransferAmountRequest
 from src.main.api.models.transfer_amount_response import TransferAmountResponse
 from src.main.api.models.credit_account_request import CreditAccountRequest
@@ -57,8 +59,8 @@ class Endpoint(Enum):
         url="/account/transfer",
         response_model=TransferAmountResponse
     )
-    CREDIT_REQUEST = EndpointConfiguration(
-        request_model=CreditAccountRequest,
+    REQUEST_CREDIT = EndpointConfiguration(
+        request_model=RequestCreditRequest,
         url="/credit/request",
-        response_model=CreditAccountResponse
+        response_model=RequestCreditResponse
     )

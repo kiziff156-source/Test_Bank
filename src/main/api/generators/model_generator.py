@@ -26,10 +26,12 @@ class RandomModelGenerator:
                     if isinstance(ann, CreationRule):
                         rule = ann
             if rule:
-                value = RandomModelGenerator._generate_from_regex(rule.regex, actual_type)
+                if rule.regex:
+                    value = RandomModelGenerator._generate_from_regex(rule.regex, actual_type)
+                elif rule.min_value is not None and rule.max_value is not None:
+                    value = RandomModelGenerator._generate_from_bounds(rule.min_value, rule.max_value, actual_type)
             else:
                 value = RandomModelGenerator._generate_value(actual_type)
-
             init_data[field_name] = value
         return cls(**init_data)
 
@@ -57,3 +59,11 @@ class RandomModelGenerator:
         elif isinstance(field_type, type):
             return RandomModelGenerator.generate(field_type)
         return None
+    @staticmethod
+    def _generate_from_bounds(min_val: float, max_val: float, field_type: type) -> Any:
+        if field_type is int:
+            return random.randint(int(min_val), int(max_val))
+        elif field_type is float:
+            return round(random.uniform(min_val, max_val), 2)
+        return random.uniform(min_val, max_val)
+
