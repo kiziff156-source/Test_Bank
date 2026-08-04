@@ -1,8 +1,6 @@
 import pytest
 
-from src.main.api.generators.model_generator import RandomModelGenerator
 from src.main.api.models.transfer_amount_request import TransferAmountRequest
-from src.main.api.models.transfer_amount_response import TransferAmountResponse
 
 
 @pytest.mark.api

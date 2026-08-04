@@ -1,10 +1,9 @@
 import pytest
 
-from src.main.api.models import deposit_account_response
-from src.main.api.models.create_account_response import CreateAccountResponse
+from src.main.api.generators.model_generator import RandomModelGenerator
 from src.main.api.models.create_user_request import CreateUserRequest
-from  src.main.api.generators.model_generator import RandomModelGenerator
 from src.main.api.models.deposit_account_request import DepositAccountRequest
+
 
 @pytest.fixture
 def create_user_request(api_manager):

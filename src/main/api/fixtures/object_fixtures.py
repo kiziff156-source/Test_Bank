@@ -5,7 +5,6 @@ import pytest
 
 from src.main.api.classes.api_manager import ApiManager
 from src.main.api.models.create_user_response import CreateUserResponse
-from src.main.api.models.login_user_response import User
 
 
 @pytest.fixture

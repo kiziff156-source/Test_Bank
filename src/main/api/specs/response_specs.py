@@ -1,7 +1,6 @@
-from requests import Response
 from http import HTTPStatus
 
-import requests
+from requests import Response
 
 
 class ResponseSpecs:

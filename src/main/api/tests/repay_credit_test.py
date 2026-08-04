@@ -1,8 +1,5 @@
 import pytest
 
-from src.main.api.models import deposit_account_response
-from src.main.api.models.deposit_account_request import DepositAccountRequest
-from src.main.api.models.deposit_account_response import DepositAccountResponse
 from src.main.api.models.repay_ceredit_request import RepayCreditRequest
 
 

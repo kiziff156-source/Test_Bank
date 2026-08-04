@@ -1,11 +1,8 @@
-
-from asyncio import Protocol
 from typing import Optional, Protocol
+
 from requests import Response
 
-
 from src.main.api.models.base_model import BaseModel
-from src.main.api.specs.response_specs import ResponseSpecs
 
 
 class CrudEndpoint(Protocol):
