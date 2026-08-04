@@ -1,6 +1,6 @@
 
-from enum import Enum
 from dataclasses import dataclass
+from enum import Enum
 from typing import Optional, Type
 
 from src.main.api.models.base_model import BaseModel
@@ -10,13 +10,13 @@ from src.main.api.models.create_user_response import CreateUserResponse
 from src.main.api.models.deposit_account_request import DepositAccountRequest
 from src.main.api.models.deposit_account_response import DepositAccountResponse
 from src.main.api.models.login_user_request import LoginUserRequest
-from src.main.api.models.login_user_response import User, LoginUserResponse
+from src.main.api.models.login_user_response import LoginUserResponse
+from src.main.api.models.repay_ceredit_request import RepayCreditRequest
+from src.main.api.models.repay_credit_response import RepayCreditResponse
 from src.main.api.models.request_credit_request import RequestCreditRequest
 from src.main.api.models.request_credit_response import RequestCreditResponse
 from src.main.api.models.transfer_amount_request import TransferAmountRequest
 from src.main.api.models.transfer_amount_response import TransferAmountResponse
-from src.main.api.models.credit_account_request import CreditAccountRequest
-from src.main.api.models.credit_account_response import CreditAccountResponse
 
 
 @dataclass
@@ -63,4 +63,9 @@ class Endpoint(Enum):
         request_model=RequestCreditRequest,
         url="/credit/request",
         response_model=RequestCreditResponse
+    )
+    REPAY_CREDIT = EndpointConfiguration(
+        request_model=RepayCreditRequest,
+        url="/credit/repay",
+        response_model=RepayCreditResponse
     )
