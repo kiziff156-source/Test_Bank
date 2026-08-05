@@ -1,6 +1,6 @@
 import pytest
 
-from src.main.api.models.transfer_amount_request import TransferAmountRequest
+from src.main.api.models.user_models.transfer_amount_request import TransferAmountRequest
 
 
 @pytest.mark.api

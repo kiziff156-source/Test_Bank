@@ -4,19 +4,19 @@ from enum import Enum
 from typing import Optional, Type
 
 from src.main.api.models.base_model import BaseModel
-from src.main.api.models.create_account_response import CreateAccountResponse
-from src.main.api.models.create_user_request import CreateUserRequest
-from src.main.api.models.create_user_response import CreateUserResponse
-from src.main.api.models.deposit_account_request import DepositAccountRequest
-from src.main.api.models.deposit_account_response import DepositAccountResponse
+from src.main.api.models.user_models.create_account_response import CreateAccountResponse
+from src.main.api.models.admin_models.create_user_request import CreateUserRequest
+from src.main.api.models.admin_models.create_user_response import CreateUserResponse
+from src.main.api.models.user_models.deposit_account_request import DepositAccountRequest
+from src.main.api.models.user_models.deposit_account_response import DepositAccountResponse
 from src.main.api.models.login_user_request import LoginUserRequest
 from src.main.api.models.login_user_response import LoginUserResponse
-from src.main.api.models.repay_ceredit_request import RepayCreditRequest
-from src.main.api.models.repay_credit_response import RepayCreditResponse
-from src.main.api.models.request_credit_request import RequestCreditRequest
-from src.main.api.models.request_credit_response import RequestCreditResponse
-from src.main.api.models.transfer_amount_request import TransferAmountRequest
-from src.main.api.models.transfer_amount_response import TransferAmountResponse
+from src.main.api.models.credit_secret_models.repay_ceredit_request import RepayCreditRequest
+from src.main.api.models.credit_secret_models.repay_credit_response import RepayCreditResponse
+from src.main.api.models.credit_secret_models.request_credit_request import RequestCreditRequest
+from src.main.api.models.credit_secret_models.request_credit_response import RequestCreditResponse
+from src.main.api.models.user_models.transfer_amount_request import TransferAmountRequest
+from src.main.api.models.user_models.transfer_amount_response import TransferAmountResponse
 
 
 @dataclass

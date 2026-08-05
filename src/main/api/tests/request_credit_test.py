@@ -1,7 +1,7 @@
 import pytest
 from src.main.api.fixtures.api_fixtures import api_manager
 from src.main.api.generators.model_generator import RandomModelGenerator
-from src.main.api.models.request_credit_request import RequestCreditRequest
+from src.main.api.models.credit_secret_models.request_credit_request import RequestCreditRequest
 
 
 @pytest.mark.api

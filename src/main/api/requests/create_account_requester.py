@@ -1,6 +1,6 @@
 import requests
 
-from src.main.api.models.create_account_response import CreateAccountResponse
+from src.main.api.models.user_models.create_account_response import CreateAccountResponse
 from src.main.api.requests.requester import Requester
 
 

@@ -1,6 +1,6 @@
 import pytest
 
-from src.main.api.models.repay_ceredit_request import RepayCreditRequest
+from src.main.api.models.credit_secret_models.repay_ceredit_request import RepayCreditRequest
 
 
 @pytest.mark.api
