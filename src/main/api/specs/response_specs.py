@@ -21,3 +21,14 @@ class ResponseSpecs:
         def confirm (response: Response):
             assert response.status_code == HTTPStatus.BAD_REQUEST, response.text
         return confirm
+
+    @staticmethod
+    def request_no_more_account():
+        def confirm (response: Response):
+            assert response.status_code == HTTPStatus.CONFLICT, response.text
+        return confirm
+    @staticmethod
+    def request_bad_login():
+        def confirm (response: Response):
+            assert response.status_code == HTTPStatus.UNAUTHORIZED, response.text
+        return confirm

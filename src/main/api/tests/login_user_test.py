@@ -1,6 +1,8 @@
 
 import pytest
 
+from src.main.api.generators.model_generator import RandomModelGenerator
+from src.main.api.models.admin_models.create_user_request import CreateUserRequest
 from src.main.api.models.login_user_request import LoginUserRequest
 
 
@@ -18,3 +20,7 @@ class TestUserLogin:
 
         assert create_user_request.username == response.user.username
         assert response.user.role == "ROLE_USER"
+
+    def test_invalid_credentials (self, api_manager):
+        unregistered_login = RandomModelGenerator.generate(CreateUserRequest)
+        api_manager.user_steps.login_unregistered(unregistered_login)
