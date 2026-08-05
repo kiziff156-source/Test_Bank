@@ -25,6 +25,7 @@ class RandomModelGenerator:
                 for ann in annotations:
                     if isinstance(ann, CreationRule):
                         rule = ann
+            value = None
             if rule:
                 if rule.regex:
                     value = RandomModelGenerator._generate_from_regex(rule.regex, actual_type)
