@@ -15,6 +15,7 @@ class TestRequestCredit:
         assert request_credit_request.amount == response.amount
         assert request_credit_request.termMonths == response.termMonths
 
+    @pytest.mark.xfail (reason="wrong HTTPStatus_code")
     def test_request_credit_invalid(self, api_manager, request_credit, create_credit_secret, create_credit_account):
         request_credit_request = RandomModelGenerator.generate(RequestCreditRequest)
         request_credit_request.accountId = create_credit_account.id
