@@ -1,4 +1,5 @@
 from src.main.api.foundation.endpoint import Endpoint
+from src.main.api.foundation.requesters.crud_requester import CrudRequester
 from src.main.api.foundation.requesters.validate_crud_requester import ValidateCrudRequester
 from src.main.api.models.admin_models.create_user_request import CreateUserRequest
 from src.main.api.models.credit_secret_models.repay_ceredit_request import RepayCreditRequest
@@ -16,6 +17,13 @@ class CreditSteps(BaseSteps):
             ResponseSpecs.request_created()
         ).post()
         return response
+
+    def create_account_credit_invalid (self, create_credit_secret:CreateUserRequest):
+        response = CrudRequester(
+            RequestSpecs.auth_headers(username=create_credit_secret.username, password=create_credit_secret.password),
+            Endpoint.CREATE_ACCOUNT,
+            ResponseSpecs.request_no_more_account()
+        ).post(create_credit_secret)
 
     def create_request_credit (self,request_credit_request:RequestCreditRequest,create_credit_secret ):
         response = ValidateCrudRequester(
