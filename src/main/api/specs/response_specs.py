@@ -32,3 +32,12 @@ class ResponseSpecs:
         def confirm (response: Response):
             assert response.status_code == HTTPStatus.UNAUTHORIZED, response.text
         return confirm
+    @staticmethod
+    def request_insufficient_funds():
+        def confirm (response: Response):
+            assert response.status_code == HTTPStatus.UNPROCESSABLE_CONTENT, response.text
+        return confirm
+    def request_credit_isinstanse():
+        def confirm (response: Response):
+            assert response.status_code == HTTPStatus.FORBIDDEN, response.text
+        return confirm

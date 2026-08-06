@@ -33,6 +33,14 @@ class CreditSteps(BaseSteps):
         ).post(request_credit_request)
         return response
 
+    def create_request_credit_invalid (self,request_credit_request:RequestCreditRequest,create_credit_secret ):
+        response = CrudRequester(
+            RequestSpecs.auth_headers(username=create_credit_secret.username, password=create_credit_secret.password),
+            Endpoint.REQUEST_CREDIT,
+            ResponseSpecs.request_credit_isinstanse()
+        ).post(request_credit_request)
+
+
     def repay_credit (self,repay_credit_request:RepayCreditRequest,create_credit_secret):
         response = ValidateCrudRequester(
             RequestSpecs.auth_headers(username=create_credit_secret.username, password=create_credit_secret.password),

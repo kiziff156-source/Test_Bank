@@ -17,3 +17,15 @@ class TestDepositAccount:
 
         assert generated_amount.accountId == deposit_account_response.id
         assert generated_amount.amount == deposit_account_response.balance
+
+    @pytest.mark.parametrize(
+        "amount",
+        [
+            999.99,
+            9000.01
+        ]
+
+    )
+    def test_deposit_account_with_invalid_amount(self, api_manager, create_user_request, create_account_request, amount):
+        deposit_account_with_invalid_amount = DepositAccountRequest(accountId=create_account_request.id, amount=amount)
+        api_manager.user_steps.deposit_account_invalid(create_user_request, deposit_account_with_invalid_amount)

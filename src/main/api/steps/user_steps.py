@@ -44,6 +44,14 @@ class UserSteps(BaseSteps):
         ).post(deposit_account_request)
         return response
 
+    def deposit_account_invalid(self,  create_user_request: CreateUserRequest, deposit_account_with_invalid_amount: DepositAccountRequest):
+        response = CrudRequester(
+            RequestSpecs.auth_headers(username=create_user_request.username, password=create_user_request.password),
+            Endpoint.DEPOSIT_ACCOUNT,
+            ResponseSpecs.request_bad()
+        ).post(deposit_account_with_invalid_amount)
+        return response
+
     def transfer_amount (self,create_user_request, transfer_amount_request):
         response = ValidateCrudRequester(
             RequestSpecs.auth_headers(username=create_user_request.username, password=create_user_request.password),
@@ -51,5 +59,12 @@ class UserSteps(BaseSteps):
             ResponseSpecs.request_ok()
         ).post(transfer_amount_request)
         return response
+
+    def transfer_amount_invalid (self,create_user_request, transfer_amount_request):
+        response = CrudRequester(
+            RequestSpecs.auth_headers(username=create_user_request.username, password=create_user_request.password),
+            Endpoint.TRANSFER_AMOUNT,
+            ResponseSpecs.request_insufficient_funds()
+        ).post(transfer_amount_request)
 
 

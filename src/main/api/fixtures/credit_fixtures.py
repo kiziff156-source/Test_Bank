@@ -16,6 +16,7 @@ def create_credit_secret(api_manager):
 def create_credit_account(api_manager, create_credit_secret):
     response = api_manager.credit_steps.create_account_credit(create_credit_secret)
     return response
+
 @pytest.fixture
 def create_credit_account_second(api_manager, create_credit_secret, create_credit_account):
     response = api_manager.credit_steps.create_account_credit(create_credit_secret)
