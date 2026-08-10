@@ -15,8 +15,29 @@ class TestRepayCredit:
             create_credit_secret:CreateUserRequest
     ):
 
-        repay_credit_request = RepayCreditRequest(creditId=request_credit.creditId, accountId=request_credit.id, amount=request_credit.amount)
+        repay_credit_request = RepayCreditRequest(creditId=request_credit.creditId,
+                                                  accountId=request_credit.id,
+                                                  amount=request_credit.amount)
         response = api_manager.credit_steps.repay_credit(repay_credit_request, create_credit_secret)
 
         assert repay_credit_request.creditId == response.creditId
         assert repay_credit_request.amount == response.amountDeposited
+
+    @pytest.mark.parametrize(
+        "part",
+        [
+            0.01,
+            -0.01,
+        ]
+    )
+    def test_repay_credit_part(
+            self,
+            part: float,
+            api_manager:ApiManager,
+            request_credit:RequestCreditResponse,
+            create_credit_secret:CreateUserRequest
+    ):
+        repay_credit_part_request = RepayCreditRequest(creditId=request_credit.creditId,
+                                                       accountId=request_credit.id,
+                                                       amount=(request_credit.amount-part))
+        api_manager.credit_steps.repay_credit_invalid(repay_credit_part_request, create_credit_secret)

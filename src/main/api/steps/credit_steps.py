@@ -10,7 +10,10 @@ from src.main.api.steps.base_steps import BaseSteps
 
 
 class CreditSteps(BaseSteps):
-    def create_account_credit(self, create_credit_secret:CreateUserRequest):
+    def create_account_credit(
+            self,
+            create_credit_secret:CreateUserRequest
+    ):
         response = ValidateCrudRequester(
             RequestSpecs.auth_headers(username=create_credit_secret.username, password=create_credit_secret.password),
             Endpoint.CREATE_ACCOUNT,
@@ -18,14 +21,21 @@ class CreditSteps(BaseSteps):
         ).post()
         return response
 
-    def create_account_credit_invalid (self, create_credit_secret:CreateUserRequest):
+    def create_account_credit_invalid(
+            self,
+            create_credit_secret:CreateUserRequest
+    ):
         response = CrudRequester(
             RequestSpecs.auth_headers(username=create_credit_secret.username, password=create_credit_secret.password),
             Endpoint.CREATE_ACCOUNT,
             ResponseSpecs.request_no_more_account()
         ).post(create_credit_secret)
 
-    def create_request_credit (self,request_credit_request:RequestCreditRequest,create_credit_secret ):
+    def create_request_credit (
+            self,
+            request_credit_request:RequestCreditRequest,
+            create_credit_secret
+    ):
         response = ValidateCrudRequester(
             RequestSpecs.auth_headers(username=create_credit_secret.username, password=create_credit_secret.password),
             Endpoint.REQUEST_CREDIT,
@@ -33,7 +43,11 @@ class CreditSteps(BaseSteps):
         ).post(request_credit_request)
         return response
 
-    def create_request_credit_invalid (self,request_credit_request:RequestCreditRequest,create_credit_secret ):
+    def create_request_credit_invalid (
+            self,
+            request_credit_request:RequestCreditRequest,
+            create_credit_secret
+    ):
         response = CrudRequester(
             RequestSpecs.auth_headers(username=create_credit_secret.username, password=create_credit_secret.password),
             Endpoint.REQUEST_CREDIT,
@@ -41,10 +55,26 @@ class CreditSteps(BaseSteps):
         ).post(request_credit_request)
 
 
-    def repay_credit (self,repay_credit_request:RepayCreditRequest,create_credit_secret):
+    def repay_credit (
+            self,
+            repay_credit_request:RepayCreditRequest,
+            create_credit_secret
+    ):
         response = ValidateCrudRequester(
             RequestSpecs.auth_headers(username=create_credit_secret.username, password=create_credit_secret.password),
             Endpoint.REPAY_CREDIT,
             ResponseSpecs.request_ok()
+        ).post(repay_credit_request)
+        return response
+
+    def repay_credit_invalid (
+            self,
+            repay_credit_request:RepayCreditRequest,
+            create_credit_secret
+    ):
+        response = CrudRequester(
+            RequestSpecs.auth_headers(username=create_credit_secret.username, password=create_credit_secret.password),
+            Endpoint.REPAY_CREDIT,
+            ResponseSpecs.request_repayment_invalid()
         ).post(repay_credit_request)
         return response
