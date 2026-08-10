@@ -1,6 +1,9 @@
 import pytest
 
+from src.main.api.classes.api_manager import ApiManager
 from src.main.api.fixtures.api_fixtures import api_manager
+from src.main.api.models.admin_models.create_user_request import CreateUserRequest
+from src.main.api.models.user_models.create_account_response import CreateAccountResponse
 from src.main.api.models.user_models.deposit_account_request import DepositAccountRequest
 from src.main.api.generators.model_generator import RandomModelGenerator
 
@@ -11,7 +14,12 @@ class TestDepositAccount:
         "generated_amount",
         [RandomModelGenerator.generate(DepositAccountRequest)],
     )
-    def test_deposit_account(self, api_manager, create_user_request, create_account_request,generated_amount):
+    def test_deposit_account(
+            self,api_manager:ApiManager,
+            create_user_request:CreateUserRequest,
+            create_account_request:CreateAccountResponse,
+            generated_amount
+    ):
         generated_amount.accountId = create_account_request.id
         deposit_account_response = api_manager.user_steps.deposit_account(create_user_request, generated_amount)
 
@@ -26,6 +34,11 @@ class TestDepositAccount:
         ]
 
     )
-    def test_deposit_account_with_invalid_amount(self, api_manager, create_user_request, create_account_request, amount):
+    def test_deposit_account_with_invalid_amount(
+            self, api_manager:ApiManager,
+            create_user_request:CreateUserRequest,
+            create_account_request:CreateAccountResponse,
+            amount
+    ):
         deposit_account_with_invalid_amount = DepositAccountRequest(accountId=create_account_request.id, amount=amount)
         api_manager.user_steps.deposit_account_invalid(create_user_request, deposit_account_with_invalid_amount)

@@ -1,11 +1,19 @@
 import pytest
 
+from src.main.api.classes.api_manager import ApiManager
+from src.main.api.models.admin_models.create_user_request import CreateUserRequest
 from src.main.api.models.credit_secret_models.repay_ceredit_request import RepayCreditRequest
+from src.main.api.models.credit_secret_models.request_credit_response import RequestCreditResponse
 
 
 @pytest.mark.api
 class TestRepayCredit:
-    def test_repay_credit(self, api_manager, request_credit, create_credit_secret):
+    def test_repay_credit(
+            self,
+            api_manager:ApiManager,
+            request_credit:RequestCreditResponse,
+            create_credit_secret:CreateUserRequest
+    ):
 
         repay_credit_request = RepayCreditRequest(creditId=request_credit.creditId, accountId=request_credit.id, amount=request_credit.amount)
         response = api_manager.credit_steps.repay_credit(repay_credit_request, create_credit_secret)

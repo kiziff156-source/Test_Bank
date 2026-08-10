@@ -1,5 +1,6 @@
 import pytest
 
+from src.main.api.classes.api_manager import ApiManager
 from src.main.api.generators.model_generator import RandomModelGenerator
 from src.main.api.models.admin_models.create_user_request import CreateUserRequest
 
@@ -10,7 +11,10 @@ class TestCreateCreditSecret:
         "generated_credit_secret",
         [RandomModelGenerator.generate(CreateUserRequest)]
     )
-    def test_create_credit_secret(self, api_manager, generated_credit_secret):
+    def test_create_credit_secret(
+            self, api_manager:ApiManager,
+            generated_credit_secret
+    ):
         generated_credit_secret.role = "ROLE_CREDIT_SECRET"
         response = api_manager.admin_steps.create_user(generated_credit_secret)
         assert generated_credit_secret.username == response.username
@@ -26,7 +30,10 @@ class TestCreateCreditSecret:
             "Pas!sword"
         ]
     )
-    def test_create_credit_secret_invalid_password (self, api_manager, password):
+    def test_create_credit_secret_invalid_password (
+            self,
+            api_manager:ApiManager,
+            password):
         create_credit_secret_invalid_password = CreateUserRequest(username= "Max", password=password, role= "ROLE_CREDIT_SECRET")
         api_manager.admin_steps.create_invalid_user(create_credit_secret_invalid_password)
 
@@ -38,6 +45,9 @@ class TestCreateCreditSecret:
                 "ab!"
             ]
         )
-    def test_create_credit_secret_invalid_username(self, api_manager, username):
+    def test_create_credit_secret_invalid_username(
+            self,
+            api_manager:ApiManager,
+            username):
         create_credit_secret_invalid_username = CreateUserRequest(username=username, password="Pas!sw0rd",role="ROLE_CREDIT_SECRET")
         api_manager.admin_steps.create_invalid_user(create_credit_secret_invalid_username)
