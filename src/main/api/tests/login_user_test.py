@@ -20,7 +20,8 @@ class TestUserLogin:
         assert response.user.role == "ROLE_ADMIN"
 
     def test_login_user(
-            self, api_manager:ApiManager,
+            self,
+            api_manager:ApiManager,
             create_user_request
     ):
         response = api_manager.admin_steps.login_user(create_user_request)
@@ -30,6 +31,7 @@ class TestUserLogin:
 
     def test_invalid_credentials (
             self,
-            api_manager:ApiManager):
+            api_manager:ApiManager
+    ):
         unregistered_login = RandomModelGenerator.generate(CreateUserRequest)
         api_manager.user_steps.login_unregistered(unregistered_login)

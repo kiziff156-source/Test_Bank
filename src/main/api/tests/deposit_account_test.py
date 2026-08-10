@@ -35,7 +35,8 @@ class TestDepositAccount:
 
     )
     def test_deposit_account_with_invalid_amount(
-            self, api_manager:ApiManager,
+            self,
+            api_manager:ApiManager,
             create_user_request:CreateUserRequest,
             create_account_request:CreateAccountResponse,
             amount
