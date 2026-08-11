@@ -27,7 +27,7 @@ class TestCreateUser:
         assert generated_user.role == response.role
 
         user_from_db = User.get_user_by_username(db_session, generated_user.username)
-        assert generated_user.username == user_from_db.username
+        assert user_from_db.username == generated_user.username, 'User not exist, error'
 
     @pytest.mark.parametrize(
         "username, password",
@@ -46,6 +46,7 @@ class TestCreateUser:
 
     def test_create_user_invalid(
             self,
+            db_session:Session,
             username,
             password,
             api_manager:ApiManager
@@ -53,4 +54,7 @@ class TestCreateUser:
         create_user_request = CreateUserRequest(username=username, password=password, role="ROLE_USER")
 
         api_manager.admin_steps.create_invalid_user(create_user_request)
+        user_from_db = User.get_user_by_username(db_session, create_user_request.username)
+
+        assert user_from_db is None, 'User already exists, error'
 
