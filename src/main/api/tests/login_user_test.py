@@ -29,7 +29,7 @@ class TestUserLogin:
     def test_login_user(
             self,
             api_manager:ApiManager,
-            create_user_request,
+            create_user_request:CreateUserRequest,
             db_session:Session
     ):
         response = api_manager.admin_steps.login_user(create_user_request)
