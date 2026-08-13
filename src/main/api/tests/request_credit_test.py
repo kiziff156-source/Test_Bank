@@ -41,7 +41,7 @@ class TestRequestCredit:
     f'expected={request_credit_request.amount}, actual={account_balance_from_db.balance}'
 
 
-   @pytest.mark.xfail (reason="wrong HTTPStatus_code, expected-403 actual-404")
+    @pytest.mark.xfail (reason="wrong HTTPStatus_code, expected-403 actual-404")
     def test_request_credit_invalid(
             self,
             db_session: Session,

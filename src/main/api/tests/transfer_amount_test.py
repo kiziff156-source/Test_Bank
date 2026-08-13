@@ -9,7 +9,7 @@ from src.main.api.models.user_models.transfer_amount_request import TransferAmou
 from src.main.api.db.crud.transaction_crud import TransactionCrud as Transaction
 from src.main.api.db.crud.account_crud import AccountCRUD as Account
 
-@pytest.mark.api.xfail(reason="BUG: to_account_id stores fromAccountId in DB")
+@pytest.mark.xfail(reason="BUG: to_account_id stores fromAccountId in DB")
 class TestTransferAmount:
 
     def test_transfer_amount(

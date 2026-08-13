@@ -6,7 +6,7 @@ from src.main.api.db.crud.user_crud import UserCrudDb
 from src.main.api.fixtures.api_fixtures import api_manager
 from src.main.api.models.admin_models.create_user_request import CreateUserRequest
 from src.main.api.models.user_models.create_account_response import CreateAccountResponse
-from src.main.api.db.crud.account_crud import AccountCRUD as Account, AccountCRUD
+from src.main.api.db.crud.account_crud import AccountCRUD as Account
 
 
 @pytest.mark.api
@@ -42,6 +42,7 @@ class TestCreateAccount:
         assert second_account_response.balance == 0
         assert second_account_response.id != account_response.id
         assert second_account_response.number != account_response.number
+
         assert second_account_from_db.id == second_account_response.id, 'Account not created in DataBase, error'
         assert second_account_from_db.balance is not None, 'Balance not created in DataBase, error'
 
@@ -53,9 +54,9 @@ class TestCreateAccount:
             create_account_second:CreateAccountResponse
     ):
         api_manager.user_steps.create_account_invalid(create_user_request)
+
         user = UserCrudDb.get_user_by_username(db_session, create_user_request.username)
         accounts = Account.get_accounts_by_user_id(db_session, user.id)
-
 
         assert len(accounts) <= 2, (
             f"user '{create_user_request.username}' has {len(accounts)} accounts (max 2). "

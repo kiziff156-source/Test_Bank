@@ -1,5 +1,6 @@
 import pytest
 
+
 from src.main.api.classes.api_manager import ApiManager
 from src.main.api.models.admin_models.create_user_request import CreateUserRequest
 from src.main.api.models.credit_secret_models.repay_ceredit_request import RepayCreditRequest
