@@ -41,3 +41,7 @@ class ResponseSpecs:
         def confirm (response: Response):
             assert response.status_code == HTTPStatus.FORBIDDEN, response.text
         return confirm
+    def request_repayment_invalid():
+        def confirm (response: Response):
+            assert response.status_code == HTTPStatus.UNPROCESSABLE_CONTENT, response.text
+        return confirm
